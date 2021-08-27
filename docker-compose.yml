@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  klub-server:
+    container_name: klub-server
+    image: klub-server
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+  nginx:
+    container_name: klub-nginx
+    image: nginx
+    volumes:
+      - ./build/nginx.conf:/etc/nginx/nginx.conf
+      - ./build/letsencrypt:/etc/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - klub-server
+    depends_on:
+      - klub-server
