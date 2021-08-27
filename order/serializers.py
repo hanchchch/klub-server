@@ -47,7 +47,7 @@ class OrderSerializer(serializers.ModelSerializer):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": f"총 금액: *₩${total}*",
+                    "text": f"총 금액: *₩{total}*",
                 },
                 },
             ],
