@@ -1,3 +1,4 @@
+from product.models import Quantity
 from django.db import models
 
 class Orderer(models.Model):
@@ -11,7 +12,8 @@ class Orderer(models.Model):
 
 
 class Order(models.Model):
-    order = models.CharField(max_length=512)
+    order = models.ForeignKey(Quantity, on_delete=models.SET_NULL, null=True)
+    quantity = models.IntegerField(default=1)
     total = models.IntegerField()
     created_time = models.DateTimeField(auto_now_add=True)
     pay_time = models.DateTimeField(null=True)

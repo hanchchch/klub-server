@@ -5,4 +5,5 @@ from django.urls.conf import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/order/", include("order.urls")),
+    path("api/product/", include("product.urls")),
 ]
