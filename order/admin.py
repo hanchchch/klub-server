@@ -3,7 +3,8 @@ from .models import Order, Orderer
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ["orderer", "total", "created_time", "pay_time"]
+    list_display = ["orderer", "total", "created_time", "order"]
+    search_fields = ["order", "orderer__username"]
 
 admin.site.register(Order, OrderAdmin)
 
