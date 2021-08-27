@@ -13,7 +13,9 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - ./.env
+      - klub.env
+    environment:
+      - DEBUG=False
     links:
       - klub-db
 
@@ -26,7 +28,7 @@ services:
     ports:
       - "3000:3000"
     env_file:
-      - ./.env
+      - klub.env
     links:
       - klub-db
     
@@ -50,6 +52,6 @@ services:
     container_name: klub-db
     image: postgres
     env_file:
-      - ./.env
+      - klub.env
     ports:
       - "5432:5432"

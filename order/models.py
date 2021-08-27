@@ -4,6 +4,7 @@ class Orderer(models.Model):
     username = models.CharField(max_length=32)
     phone = models.CharField(max_length=64, unique=True)
     address = models.CharField(max_length=256)
+    donation = models.CharField(max_length=256, blank=True)
 
 class Order(models.Model):
     order = models.CharField(max_length=512)

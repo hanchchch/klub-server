@@ -3,3 +3,4 @@ venv
 __pycache__
 build/letsencrypt
 db.sqlite3
+klub.env

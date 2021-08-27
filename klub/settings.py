@@ -2,15 +2,17 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-env_path = Path(".") / ".env"
+env_path = Path(".") / "klub.env"
 load_dotenv(dotenv_path=env_path)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = os.getenv("DEBUG")
+SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
 
-ALLOWED_HOSTS = []
+DEBUG = os.getenv("DEBUG") == "True"
+
+ALLOWED_HOSTS = ["localhost", "klub.devk.or.kr"]
 
 
 # Application definition
