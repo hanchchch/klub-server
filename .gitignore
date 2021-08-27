@@ -1,4 +1,4 @@
 venv
 __pycache__
-./build/letsencrypt
+build/letsencrypt
 db.sqlite3
