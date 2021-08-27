@@ -13,5 +13,5 @@ RUN pip3 install -r requirements.txt
 
 ADD . /app
 
-RUN ["chmod",  "+x", "/app/build/app/start.sh"]
-ENTRYPOINT ["sh", "/app/build/app/start.sh"]
+RUN ["chmod",  "+x", "/app/build/start.sh"]
+ENTRYPOINT ["sh", "/app/build/start.sh"]

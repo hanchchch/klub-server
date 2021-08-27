@@ -7,14 +7,34 @@ services:
     build:
       context: .
       dockerfile: ./build/Dockerfile
+    volumes:
+      - ./static:/app/klub/static
+      - ./build/letsencrypt:/etc/letsencrypt
     ports:
       - "8000:8000"
     env_file:
       - ./.env
+    links:
+      - klub-db
+
+  klub-client:
+    container_name: klub-client
+    image: klub-client
+    build:
+      context: ../klub-web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./.env
+    links:
+      - klub-db
+    
   nginx:
     container_name: klub-nginx
     image: nginx
     volumes:
+      - ./static:/static
       - ./build/nginx.conf:/etc/nginx/nginx.conf
       - ./build/letsencrypt:/etc/letsencrypt
     ports:
@@ -22,5 +42,14 @@ services:
       - "443:443"
     links:
       - klub-server
+      - klub-client
     depends_on:
       - klub-server
+    
+  klub-db:
+    container_name: klub-db
+    image: postgres
+    env_file:
+      - ./.env
+    ports:
+      - "5432:5432"
