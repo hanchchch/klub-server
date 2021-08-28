@@ -21,14 +21,15 @@ class QuantityView(GenericAPIView):
         qs = self.get_queryset()
 
         if not is_set:
-            qs = qs.filter(values__id__contains=[ v["id"] for v in options])
+            for option in options:
+                qs = qs.filter(values__id__in=[option["id"]])
             return Response(self.get_serializer(qs, many=True).data)
             
         else:
             result = []
             print(qs)
-            for i in range(len(options)):
-                qs = qs.filter(values__id__in=[options[i]["id"]])
+            for option in options:
+                qs = qs.filter(values__id__in=[option["id"]])
                 print(qs)
                 if qs.count() == 1:
                     result.append(self.get_serializer(qs.first()).data)

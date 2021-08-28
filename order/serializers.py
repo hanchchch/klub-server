@@ -53,6 +53,9 @@ class OrderSerializer(serializers.ModelSerializer):
             ],
         )
         targets = validated_data.pop("target")
+        for target in targets:
+            target.quantity = target.quantity - 1
+            target.save()
         order = Order.objects.create(**validated_data)
         order.target.set(targets)
         order.save()
