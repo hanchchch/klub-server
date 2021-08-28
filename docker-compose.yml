@@ -9,6 +9,7 @@ services:
       dockerfile: ./build/Dockerfile
     volumes:
       - ./static:/app/static
+      - ./media:/app/media
       - ./build/letsencrypt:/etc/letsencrypt
     ports:
       - "8000:8000"
@@ -37,6 +38,7 @@ services:
     image: nginx
     volumes:
       - ./static:/static
+      - ./media:/media
       - ./build/nginx.conf:/etc/nginx/nginx.conf
       - ./build/letsencrypt:/etc/letsencrypt
     ports:
