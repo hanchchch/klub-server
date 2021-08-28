@@ -95,55 +95,55 @@ class Command(BaseCommand):
         prod.save()
 
         q = Quantity.objects.create(
-            quantity=10,
+            quantity=29,
         )
         q.values.set([shirts_m, shirts_black])
         q.save()
 
         q = Quantity.objects.create(
-            quantity=10,
+            quantity=14,
         )
         q.values.set([shirts_l, shirts_black])
         q.save()
 
         q = Quantity.objects.create(
-            quantity=10,
+            quantity=7,
         )
         q.values.set([shirts_xl, shirts_black])
         q.save()
 
         q = Quantity.objects.create(
-            quantity=10,
+            quantity=13,
         )
         q.values.set([shirts_m, shirts_white])
         q.save()
 
         q = Quantity.objects.create(
-            quantity=10,
+            quantity=20,
         )
         q.values.set([shirts_l, shirts_white])
         q.save()
 
         q = Quantity.objects.create(
-            quantity=10,
+            quantity=17,
         )
         q.values.set([shirts_xl, shirts_white])
         q.save()
 
         q = Quantity.objects.create(
-            quantity=10,
+            quantity=34,
         )
         q.values.set([tumbler_black])
         q.save()
 
         q = Quantity.objects.create(
-            quantity=10,
+            quantity=3,
         )
         q.values.set([tumbler_white])
         q.save()
 
         q = Quantity.objects.create(
-            quantity=10,
+            quantity=22,
         )
         q.values.set([sticker_fixed])
         q.save()
