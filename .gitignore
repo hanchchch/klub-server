@@ -5,3 +5,4 @@ build/letsencrypt
 db.sqlite3
 klub.env
 static
+media

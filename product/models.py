@@ -38,3 +38,12 @@ class Quantity(models.Model):
             return f"[{self.values.first().option.name}] "+"/".join([value.value for value in self.values.all()])
         else:
             return f"[]"
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(ListProduct, related_name="images", on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="product_images")
+    is_main = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"[{self.product.name}] image"

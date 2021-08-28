@@ -13,7 +13,7 @@ class Orderer(models.Model):
 
 class Order(models.Model):
     summary = models.CharField(max_length=512)
-    target = models.ForeignKey(Quantity, on_delete=models.SET_NULL, null=True)
+    target = models.ManyToManyField(Quantity, blank=True)
     quantity = models.IntegerField(default=1)
     total = models.IntegerField()
     created_time = models.DateTimeField(auto_now_add=True)

@@ -52,7 +52,11 @@ class OrderSerializer(serializers.ModelSerializer):
                 },
             ],
         )
-        return Order.objects.create(**validated_data)
+        targets = validated_data.pop("target")
+        order = Order.objects.create(**validated_data)
+        order.target.set(targets)
+        order.save()
+        return order
 
 class OrdererCreateSerializer(serializers.ModelSerializer):
     class Meta:
