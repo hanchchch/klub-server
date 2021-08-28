@@ -58,6 +58,7 @@ class Command(BaseCommand):
         prod = ListProduct.objects.create(
             name="Libertas Set",
             description="Libertas Set",
+            original_price=22800,
             price=20800,
         )
         prod.options.set([shirts_size, shirts_color])
@@ -67,6 +68,7 @@ class Command(BaseCommand):
         prod = ListProduct.objects.create(
             name="Justitia Set",
             description="Justitia Set",
+            original_price=24800,
             price=22800,
         )
         prod.options.set([shirts_size, shirts_color, tumbler_color])
@@ -75,6 +77,7 @@ class Command(BaseCommand):
         prod = ListProduct.objects.create(
             name="Veritas Set",
             description="Justitia Set",
+            original_price=13800,
             price=11800,
         )
         prod.options.set([tumbler_color])
@@ -84,6 +87,7 @@ class Command(BaseCommand):
         prod = ListProduct.objects.create(
             name="Young-Tiger Set",
             description="Young-Tiger Set",
+            original_price=30700,
             price=27700,
         )
         prod.options.set([shirts_size, shirts_color, tumbler_color])

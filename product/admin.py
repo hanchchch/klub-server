@@ -15,6 +15,11 @@ class OptionsAdmin(admin.ModelAdmin):
         OptionValuesInlineAdmin,
     ]
 
+class ProductOptionInlineAdmin(admin.TabularInline):
+    model = ListProduct.options.through
+
+class ProductOptionValueInlineAdmin(admin.TabularInline):
+    model = ListProduct.fixed_options.through
 
 class ProductImageInlineAdmin(admin.TabularInline):
     model = ProductImage
@@ -23,6 +28,8 @@ class ProductImageInlineAdmin(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = [
         ProductImageInlineAdmin,
+        ProductOptionInlineAdmin,
+        ProductOptionValueInlineAdmin,
     ]
 
 admin.site.register(Option, OptionsAdmin)

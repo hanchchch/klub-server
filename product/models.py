@@ -19,6 +19,7 @@ class OptionValue(models.Model):
 class ListProduct(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    original_price = models.IntegerField(null=True, default=None)
     price = models.IntegerField(default=0)
     options = models.ManyToManyField(Option, blank=True)
     fixed_options = models.ManyToManyField(OptionValue, blank=True)
