@@ -14,9 +14,10 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def create(self, validated_data):
-        order = validated_data.get("order")
+        summary = validated_data.get("summary")
         total = validated_data.get("total")
         orderer = validated_data.get("orderer")
+        quantity = validated_data.get("quantity")
         webhook.send(
             blocks=[
                 {
@@ -36,7 +37,7 @@ class OrderSerializer(serializers.ModelSerializer):
                     },
                     {
                     "type": "mrkdwn",
-                    "text": order
+                    "text": summary
                     },
                 ],
                 },
@@ -54,7 +55,7 @@ class OrderSerializer(serializers.ModelSerializer):
         )
         targets = validated_data.pop("target")
         for target in targets:
-            target.quantity = target.quantity - 1
+            target.quantity = target.quantity - quantity
             target.save()
         order = Order.objects.create(**validated_data)
         order.target.set(targets)
