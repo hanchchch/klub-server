@@ -1,19 +1,19 @@
 from rest_framework import serializers
-from .models import Option, OptionValue, Product, Quantity
-
-
-class QuantitySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Quantity
-        fields = "__all__"
+from .models import Option, OptionValue, ListProduct, Quantity
 
 
 class OptionValueSerializer(serializers.ModelSerializer):
-    quantities = QuantitySerializer(read_only=True, many=True)
-
     class Meta:
         model = OptionValue
-        fields = '__all__'
+        fields = ["id", "value", "option"]
+
+
+class QuantitySerializer(serializers.ModelSerializer):
+    values = OptionValueSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Quantity
+        fields = "__all__"
 
 
 class OptionSerializer(serializers.ModelSerializer):
@@ -24,9 +24,10 @@ class OptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ListProductSerializer(serializers.ModelSerializer):
     options = OptionSerializer(read_only=True, many=True)
+    fixed_options = OptionValueSerializer(read_only=True, many=True)
 
     class Meta:
-        model = Product
+        model = ListProduct
         fields = "__all__"

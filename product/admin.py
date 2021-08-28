@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import OptionValue, Product, Category, Quantity, SetProduct, Option
+from .models import OptionValue, ListProduct, Quantity, Option
 
 
 class QuantityAdmin(admin.ModelAdmin):
@@ -17,7 +17,7 @@ class OptionsAdmin(admin.ModelAdmin):
 
 
 class OptionsInlineAdmin(admin.TabularInline):
-    model = Option
+    model = ListProduct.options.through
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -25,8 +25,6 @@ class ProductAdmin(admin.ModelAdmin):
         OptionsInlineAdmin,
     ]
 
-admin.site.register(Category)
-# admin.site.register(Option, OptionsAdmin)
+admin.site.register(Option, OptionsAdmin)
 admin.site.register(Quantity, QuantityAdmin)
-admin.site.register(Product, ProductAdmin)
-admin.site.register(SetProduct)
+admin.site.register(ListProduct, ProductAdmin)
